@@ -20,6 +20,7 @@ ORM(Object to Relational Mapping), Nesne ile İlişkisel Eşleme olarak açabili
 - Dapper
 - nHibernate
 
+**NOT!! -> Framework, başka kişiler tarafından önceden belli bir amaç için yazılmış, başkalarının kullanımına açılmış kodlara denir.**
 
 **ORM Araçlarının Avantajları:**
 - Database teknolojisine olan bağımlılığını ortadan kaldırır. Uygulama sadece ORM'i bilir. Database hakkında fikri yoktur.
