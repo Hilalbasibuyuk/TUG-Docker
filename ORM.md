@@ -91,6 +91,89 @@ Bu yaklaşımda öncelikle entityler için sınıflar oluşturulur ve daha sonra
 Bu yaklaşımda, model, grafiksel bir ara yüz veya XML tabanlı bir dosya olarak tanımlanabilir. Önce yeni bir model oluşturmaya sonra o modelden bir veri tabanı şeması oluşturmaya izin verir. Bu yöntemde daha çok design ile çalışılır.
 
 
+## N+1 Problemi Nedir
+Eğer ORM fonksiyonunu yanlış şekilde kullanırsak aslında 1(bir) SQL sorgusu ile yapabileceğimiz bir sorguyu, sorgumuzdan kaç adet satır döndüyse (yani N adet) o kadar fazla SQL sorgusu ile yapıyoruz.Yani, ORM ile ilişkili veriler çekilirken fazladan sorguların oluşmasıdır.
+
+- **1 sorgu**: Ana tabloyu çekmek için atılır.
+- **N sorgu**: Her bir satırın ilişkili verisini almak için ayrı ayrı atılır.
+
+Bu da toplamda **N+1 sorgu** çalışmasına neden olur.
+
+---
+
+## Örnek Senaryo
+Bir kullanıcının birden fazla gönderisi (Post) olduğunu varsayalım.
+
+### Entity Tanımları
+```csharp
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public ICollection<Post> Posts { get; set; }
+}
+
+public class Post
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public int UserId { get; set; }
+    public User User { get; set; }
+}
+```
+
+### N+1 Probleminin Oluştuğu Kod
+```csharp
+using (var context = new AppDbContext())
+{
+    var users = context.Users.ToList(); // 1. sorgu (Users tablosu)
+
+    foreach (var user in users)
+    {
+        var posts = user.Posts.ToList(); // Her kullanıcı için 1 sorgu (N sorgu)
+        Console.WriteLine($"{user.Name} - {posts.Count} post");
+    }
+}
+```
+
+- İlk satırda `Users` tablosu için **1 sorgu** atılır.
+- Döngüde her `user.Posts` erişiminde **ayrı bir SQL sorgusu** atılır.
+- 100 kullanıcı varsa toplamda **101 sorgu** oluşur.
+
+---
+
+## Çözüm: Eager Loading (`Include`)
+
+Entity Framework ile ilişkili verileri tek seferde çekmek için `Include` kullanılır.
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+
+using (var context = new AppDbContext())
+{
+    var users = context.Users
+                       .Include(u => u.Posts)
+                       .ToList(); // Tek sorgu ile Users + Posts alınır
+
+    foreach (var user in users)
+    {
+        Console.WriteLine($"{user.Name} - {user.Posts.Count} post");
+    }
+}
+```
+
+Bu şekilde hem kullanıcılar hem de gönderileri **tek bir SQL sorgusu** ile çekilir. N+1 problemi ortadan kalkar.
+
+---
+
+## Sonuç
+- ORM'ler işimizi kolaylaştırır fakat farkında olmadan **N+1 problemi** yaratabiliriz.
+- Çözüm için:
+  - **Eager Loading (`Include`)**
+  - **Explicit Loading**
+  - **Projection (`Select`)**
+  gibi yöntemler kullanılmalıdır.
+
 
 # KAYNAKÇA
 - https://academy.patika.dev/courses/net-core/2-orm-ve-ef-core
@@ -102,5 +185,6 @@ Bu yaklaşımda, model, grafiksel bir ara yüz veya XML tabanlı bir dosya olara
 - https://www.tutorialspoint.com/entity_framework/entity_code_first_approach.htm - Kod öncelikli yaklaşım
 - https://www.tutorialspoint.com/entity_framework/entity_database_first_approach.htm - Veritabanı öncelikli yaklaşım
 - https://www.tutorialspoint.com/entity_framework/entity_model_first_approach.htm - Model öncelikli yaklaşım
-- https://www.soltrabilisim.com.tr/entity-framework-code-first-avantajlar/  
+- https://www.soltrabilisim.com.tr/entity-framework-code-first-avantajlar/
+- https://medium.com/@utkucanbykl/orm-ve-n-1-problemi-79ec4135290b
 
