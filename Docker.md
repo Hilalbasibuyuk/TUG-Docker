@@ -1,17 +1,32 @@
 # TUG-Docker
 ## ORM 
-ORM(Object to Relational Mapping), Nesne ile İlişkisel Eşleme olarak açabiliriz. İlişkisel veri tabanı ile uygulama içerisinde kullandığımız modelleri/nesneleri birbirine bağlama tekniğidir. Db objelerinin kod tarafında bir replikası bir yansıması var gibi düşünebilirsiniz. ORM bu mapleme tekniğinin adıdır. ORM'i uygulamak için kullandığımız yazılımlara da ORM Araçları diyoruz. ORM araçları ilişkisel veritabanları ve uygulama arasındaki köprüdür.
+ORM(Object to Relational Mapping), Nesne ile İlişkisel Eşleme olarak açabiliriz. .NET geniş bir geliştirme yelpazede geliştirme araçları sunar ve veri tabanı işlemleri için ORM bu araçlardan biridir. İlişkisel veri tabanı ile uygulama içerisinde kullandığımız modelleri/nesneleri birbirine bağlama tekniğidir. Db objelerinin kod tarafında bir replikası bir yansıması var gibi düşünebilirsiniz. ORM bu mapleme tekniğinin adıdır. ORM'i uygulamak için kullandığımız yazılımlara da ORM Araçları diyoruz. ORM tekniği çoğu nesne yönelimli programlama dillerinde kullanılabilir.
 
- ORM tekniği çoğu nesne yönelimli programlama dillerinde kullanılabilir.
+- Özetle, ORM, bir veritabanı tablosunu, programlama dilindeki nesnelerle ilişkilendirir. Böylece geliştiriciler, veritabanına veri eklemek, silmek veya güncellemek gibi işlemleri nesne tabanlı bir yaklaşımla gerçekleştirir.
+
+
+**NOT!!** Önceden geliştirilen projelerde veri tabanına bağlanmak istenildiğinde eskiden genellikle ADO.NET denilen, veri tabanı işlemlerini SQL sorgusu ile yaptığımız ve veri tabanına uygulama içerisinden bağlanılan bir yöntem kullanılırdı. Nesne tabanlı programlama dillerinin gelişmesi ve yaygınlaşması ile  ADO.NET' in karmaşıklığını basite indiren ve daha okunaklı kod yazılabilmesi için  ORM (Object Relational Mapping) ortaya çıktı.
+
+### ORM’nin Temel Prensipleri
+**Nesne ve Tablo İlişkisi: ** ORM, veritabanı tablolarını, yazılımın nesne modeline dönüştürür. Örneğin, bir kullanıcı tablosu (user) veritabanında bir User sınıfına karşılık gelir. Her tablodaki satır, bir nesnenin örneği olur ve her sütun, nesnenin özellikleri (properties) ile eşleşir.
+
+**SQL’den Soyutlama:** ORM, geliştiricinin SQL komutlarını doğrudan yazmasına gerek bırakmadan veritabanı işlemleri yapmasını sağlar. Veritabanına erişim için SQL sorgularını manuel yazmak yerine, ORM araçları otomatik olarak sorguları oluşturur.
+
+**Veri Erişimi ve Yönetimi:** ORM, veritabanı ile etkileşim için sınıflar ve nesneler üzerinden işlem yapılmasını sağlar. Veritabanına veri eklemek, güncellemek, silmek ve sorgulamak gibi işlemler, nesnelerle yapılır ve ORM, bu işlemleri veritabanı diline çevirir.
+
 
 <img width="781" height="414" alt="image" src="https://github.com/user-attachments/assets/8bb889f5-b266-4aad-b2c5-2ea6665be159" />
 
+Resim kaynakçası -> https://medium.com/kodluyoruz/orm-nedir-orm-ara%C3%A7lar%C4%B1-ve-yakla%C5%9F%C4%B1mlar%C4%B1-nelerdir-37af94ee873c
+
+
 **Dillere göre ORM Araçları**
-**C#** : Entity Framework, Dapper
-**Java** : Hibernate, JPA, MyBatis
-**Phyton** : Django, Storm
-**PHP** : PdoMap, CakePHP
+**C#(.NET)** : Entity Framework(EF), Dapper, NHibernate
+**Java** : Hibernate, JPA, MyBatis, JOOQ (Java Object-Oriented Querying)
+**Phyton** : Django ORM, Storm, Web2py, SQL Alchemy
+**PHP** : PdoMap, CakePHP, Eloquent ORM (Laravel), RedBeanPHP, Doctrine ORM
 **Nodejs** : Sequelize, Mongoose
+**Ruby**: Active Record
 
 
 **En çok kullanılan ORM araçları**
@@ -20,13 +35,19 @@ ORM(Object to Relational Mapping), Nesne ile İlişkisel Eşleme olarak açabili
 - Dapper
 - nHibernate
 
+
 **NOT!! -> Framework, başka kişiler tarafından önceden belli bir amaç için yazılmış, başkalarının kullanımına açılmış kodlara denir.**
+
+
 
 **ORM Araçlarının Avantajları:**
 - Database teknolojisine olan bağımlılığını ortadan kaldırır. Uygulama sadece ORM'i bilir. Database hakkında fikri yoktur.
 - SQL/TSQL/PLSQL bilmeden çok kısa bir zamanda db işlemlerini çok daha az kod yazarak yapabilirsiniz.
 - Nesne yönelimli kod yazmayı destekler.
 - ORM Araçlarının çoğu açık kaynak kodludur.
+- Kod daha temiz ve anlaşılır olur: SQL sorguları yazmak yerine nesnelerle çalışıldığı için kod okunabilirliği artar ve bakım yapmak kolaylaşır.
+- Veri Tipi Dönüşümleri ve Hata Azaltma: ORM, veritabanı tiplerini otomatik olarak programlama dili tiplerine çevirir, böylece tip hataları ve manuel dönüşüm ihtiyacı en aza iner.
+- İlişkili Verilerle Çalışma Kolaylığı: Tablolar arasındaki ilişkiler nesneler üzerinden yönetildiği için join işlemleri gibi karmaşık sorgular daha basit ve anlaşılır hale gelir.
 
 
 **ORM Araçlarının Dezavantajları:**
@@ -35,11 +56,40 @@ ORM(Object to Relational Mapping), Nesne ile İlişkisel Eşleme olarak açabili
 - Orm aracını öğrenmek için de zamana ihtiyacınız vardır.
 
 
-**ORM modelleme yaklaşımları 3'e ayrılır:**
-- DB First Yaklaşım
-- Code First Yaklaşım
-- Model First Yaklaşım
+### Orm ve veritabanı ilişkileri
+ORM, veritabanındaki tablolarla yazılım dilindeki nesneler arasındaki ilişkileri yönetir. Bu ilişkiler genellikle şu şekildedir:
 
+- Bir-bir (One-to-One): Bir nesnenin bir başka nesneyle ilişkili olduğu durumdur. Örneğin, her kullanıcı yalnızca bir profil resmine sahip olabilir.
+- Bir-çok (One-to-Many): Bir nesnenin birden fazla nesneyle ilişkili olduğu durumdur. Örneğin, bir kullanıcı birden fazla gönderi (post) yapabilir.
+- Çok-çok (Many-to-Many): Bir nesnenin birçok başka nesneyle ilişkili olduğu durumdur. Örneğin, bir öğrenci birçok derse kayıt olabilir ve bir ders birçok öğrenciye sahip olabilir.
+
+
+
+Şimdi SQL ve ORM arasındaki farkı anlamak için bir SQL kodu ve ORM tabanlı bir framework kodunu karşılaştıralım, Bu kod, SQL kullanarak id’si bilinen bir kullanıcının bilgilerini sorgulamaya yarar.
+```sql
+"SELECT id, name, email, phone_number FROM users WHERE id = 5"
+```
+
+Bu kod da aynı işleve sahipken çok daha kısadır ve nesne tabanlı olmasından dolayı users nesnesinin GetById() fonksiyonu ile bütün bilgilerini görebilir:
+```sql
+users.GetById(5)
+```
+
+
+**ORM modelleme yaklaşımları 3'e ayrılır:**
+- DB First Yaklaşım (Database öncelikli paylaşım)
+- Code First Yaklaşım (Kod öncelikli paylaşım)
+- Model First Yaklaşım (Model öncelikli paylaşım)
+
+
+### DB First Yaklaşım
+Bu yaklaşımda, var olan bir veri tabanı şeması ele alınır ve bu şema nesne modellerine dönüştürülür. Veri tabanında değişiklikler yapmak istendiğinde SQL de el ile yani manuel olarak değişiklikler yapıldıktan sonra modele aktarılır.
+
+### Code First Yaklaşım
+Bu yaklaşımda öncelikle entityler için sınıflar oluşturulur ve daha sonra bu sınıflar arasında veri tabanı için ilişkiler oluşturulur. Sınıfların içindeki propertyler kolon olarak, sınıflar tablo alarak veri tabanına aktarılır.
+
+### Model First Yaklaşım
+Bu yaklaşımda, model, grafiksel bir ara yüz veya XML tabanlı bir dosya olarak tanımlanabilir. Önce yeni bir model oluşturmaya sonra o modelden bir veri tabanı şeması oluşturmaya izin verir. Bu yöntemde daha çok design ile çalışılır.
 
 
 
@@ -50,5 +100,8 @@ ORM(Object to Relational Mapping), Nesne ile İlişkisel Eşleme olarak açabili
 - https://www.fatihbaytar.com.tr/post/object-relational-mapping-orm-nedir
 - https://www.ozzacademy.com/orm-object-relational-mapping-nedir/
 - https://www.freecodecamp.org/news/what-is-an-orm-the-meaning-of-object-relational-mapping-database-tools/
-- https://www.tutorialspoint.com/entity_framework/index.htm
+- https://www.tutorialspoint.com/entity_framework/entity_code_first_approach.htm - Kod öncelikli yaklaşım
+- https://www.tutorialspoint.com/entity_framework/entity_database_first_approach.htm - Veritabanı öncelikli yaklaşım
+- https://www.tutorialspoint.com/entity_framework/entity_model_first_approach.htm - Model öncelikli yaklaşım
+- https://www.soltrabilisim.com.tr/entity-framework-code-first-avantajlar/  
 
