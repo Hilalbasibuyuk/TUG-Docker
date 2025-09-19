@@ -18,6 +18,7 @@ ORM(Object to Relational Mapping), Nesne ile İlişkisel Eşleme olarak açabili
 
 Resim kaynakçası -> https://medium.com/kodluyoruz/orm-nedir-orm-ara%C3%A7lar%C4%B1-ve-yakla%C5%9F%C4%B1mlar%C4%B1-nelerdir-37af94ee873c
 
+---
 
 **Dillere göre ORM Araçları**
 **C#(.NET)** : Entity Framework(EF), Dapper, NHibernate
@@ -62,7 +63,7 @@ ORM, veritabanındaki tablolarla yazılım dilindeki nesneler arasındaki ilişk
 - Bir-çok (One-to-Many): Bir nesnenin birden fazla nesneyle ilişkili olduğu durumdur. Örneğin, bir kullanıcı birden fazla gönderi (post) yapabilir.
 - Çok-çok (Many-to-Many): Bir nesnenin birçok başka nesneyle ilişkili olduğu durumdur. Örneğin, bir öğrenci birçok derse kayıt olabilir ve bir ders birçok öğrenciye sahip olabilir.
 
-
+---
 
 Şimdi SQL ve ORM arasındaki farkı anlamak için bir SQL kodu ve ORM tabanlı bir framework kodunu karşılaştıralım, Bu kod, SQL kullanarak id’si bilinen bir kullanıcının bilgilerini sorgulamaya yarar.
 ```sql
@@ -90,6 +91,7 @@ Bu yaklaşımda öncelikle entityler için sınıflar oluşturulur ve daha sonra
 ### Model First Yaklaşım
 Bu yaklaşımda, model, grafiksel bir ara yüz veya XML tabanlı bir dosya olarak tanımlanabilir. Önce yeni bir model oluşturmaya sonra o modelden bir veri tabanı şeması oluşturmaya izin verir. Bu yöntemde daha çok design ile çalışılır.
 
+---
 
 ## N+1 Problemi Nedir
 Eğer ORM fonksiyonunu yanlış şekilde kullanırsak aslında 1(bir) SQL sorgusu ile yapabileceğimiz bir sorguyu, sorgumuzdan kaç adet satır döndüyse (yani N adet) o kadar fazla SQL sorgusu ile yapıyoruz.Yani, ORM ile ilişkili veriler çekilirken fazladan sorguların oluşmasıdır.
