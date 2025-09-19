@@ -1,5 +1,4 @@
-# TUG-Docker
-## ORM 
+# ORM
 ORM(Object to Relational Mapping), Nesne ile İlişkisel Eşleme olarak açabiliriz. .NET geniş bir geliştirme yelpazede geliştirme araçları sunar ve veri tabanı işlemleri için ORM bu araçlardan biridir. İlişkisel veri tabanı ile uygulama içerisinde kullandığımız modelleri/nesneleri birbirine bağlama tekniğidir. Db objelerinin kod tarafında bir replikası bir yansıması var gibi düşünebilirsiniz. ORM bu mapleme tekniğinin adıdır. ORM'i uygulamak için kullandığımız yazılımlara da ORM Araçları diyoruz. ORM tekniği çoğu nesne yönelimli programlama dillerinde kullanılabilir.
 
 - Özetle, ORM, bir veritabanı tablosunu, programlama dilindeki nesnelerle ilişkilendirir. Böylece geliştiriciler, veritabanına veri eklemek, silmek veya güncellemek gibi işlemleri nesne tabanlı bir yaklaşımla gerçekleştirir.
