@@ -1,4 +1,4 @@
-# CQRS VE Meaditr
+# CQRS VE Mediatr
 
 
 
