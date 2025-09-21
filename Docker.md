@@ -1,3 +1,22 @@
+# DOCKER
+Docker en net tanımlamayla open source bir ‘container’ teknolojisidir. Docker, aynı işletim sistemi üzerinde, yüzlerce hatta binlerce birbirinden izole ve bağımsız containerlar sayesinde sanallaştırma sağlayan bir teknolojidir.  Docker, yazılımları kitaplıklar, sistem araçları, kod ve çalışma zamanı dâhil olmak üzere yazılımların çalışması için gerekli her şeyi içeren container adlı standartlaştırılmış birimler hâlinde paketler. Web uygulamalarımızın kolayca kurulumunu, testini, çalışmasını ve deploymentını sağlar. Bunun yanında sunucu maliyetlerini önemli ölçüde azaltır.
+
+### Neden ihtiyacımız var?
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6218b830-bc88-4de1-9eac-fd05ad37005e" />
+
+
+### Neye ihtiyacımız var?
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6f24bec1-b99a-4097-b8eb-f91c4b2e40cc" />
+
+
+
+Bir sanal makinenin sunucu donanımını sanallaştırmasına (doğrudan yönetme gereksinimini ortadan kaldırma) benzer şekilde container'lar da bir sunucunun işletim sistemini sanallaştırır. Docker her sunucuya yüklenir ve container'ları oluşturmak, başlatmak veya durdurmak için kullanabileceğiniz basit komutlar sağlar.
+
+<img width="687" height="447" alt="image" src="https://github.com/user-attachments/assets/017def78-0181-47e6-9ace-1c2e1bda553b" />
+
+---
 
 
 
