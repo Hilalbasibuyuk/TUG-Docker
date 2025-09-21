@@ -63,6 +63,19 @@ Sol taraftaki uygulamalar (Docker Hub üzerinden çekiyoruz bunları) bir image 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/df08493e-8db3-4674-9565-9e8aa40af76e" />
 
 
+### Aşağıda geliştirme, test, üretim aşamalarında nerede olursa olsun aynı şekilde çalışabilen bir sistem görüyoruz
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/85781982-5e3c-44ff-8719-c7fdb85c3893" />
+
+
+### Geliştirici DockerFile olmadan DevOps'a gönderirse, DevOps'un hata yapma olasılığı çok yüksek. DockerFile ile bu hata sıfıra iner.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/63597a00-57da-40a9-bf8d-7f4550c07bf0" />
+
+### Kaynakça kısmındaki Docker Hub linki ile containerları indirebilirsiniz(pull edebilirsiniz) 
+
+
+
 
 # KAYNAKÇA
 - https://medium.com/batech/docker-nedir-docker-kavramlar%C4%B1-avantajlar%C4%B1-901b37742ee0
@@ -70,3 +83,5 @@ Sol taraftaki uygulamalar (Docker Hub üzerinden çekiyoruz bunları) bir image 
 - https://medium.com/devopsturkiye/docker-nedir-avantajlar%C4%B1-cab6d72e1fcf
 - https://www.ihsteknoloji.com/blog/docker-nedir/
 - https://bulutistan.com/blog/docker-nedir/
+- https://www.docker.com/  -> Docker indirme linki
+- https://hub.docker.com/  -> Docker Hub
