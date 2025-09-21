@@ -74,6 +74,58 @@ Sol taraftaki uygulamalar (Docker Hub üzerinden çekiyoruz bunları) bir image 
 
 ### Kaynakça kısmındaki Docker Hub linki ile containerları indirebilirsiniz(pull edebilirsiniz) 
 
+---
+
+## Command Line Editor (CLI)
+
+### Terminale yazdığımız bu komut ile Ubuntu image'ini yükleriz
+
+```bash
+docker pull ubuntu
+```
+
+### Örneğin mongo image'ini indirmek için bir diğer komut
+
+```bash
+docker pull mongo
+```
+
+İndirme işlemini pull ile yapıyoruz. Çalıştırma kısmı ise konteynırda olacak. (run komutu ile)
+
+### Örneğin bizde yüklü olmayan konteynırı çalıştırmak istersek run komutu ile, eğer image yoksa kendiliğinden otomatik olarak pull ederek yükler ve çalıştırır.
+
+```bash
+docker run redis
+```
+
+### Mevcut image'leri görmek için
+
+```bash
+docker images
+```
+
+Ubuntu bir işletim sistemidir. Biz "docker run ubuntu" komutunu çalıştırırsak görev vermediğimiz için çalışmaz. 
+
+### Mesela 5 saniye çalış sonra kapan komutu:(Çok da işe yarar değildir)
+
+```bash
+docker run ubuntu sleep 5
+```
+
+### Bir görev vererek ubuntu'nun içine girme örneği(root). 
+
+- it (i = interactive, t = tty) -> i - STDIN’i açık tutar, yani container’a komut girebilirsin., t - Bir terminal (pseudo-TTY) sağlar.
+- Sonuç, Ubuntu image’inden açılan container’ın içine interaktif bir bash shell ile düşersin. **root@<container_id>:/#** Böyle bir terminal başlangıcı görünür.
+ 
+```bash
+docker run -it ubuntu
+```
+
+### exit komutu ile çıkabiliriz
+
+```bash
+exit
+```
 
 
 
