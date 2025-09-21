@@ -11,6 +11,16 @@ Docker en net tanımlamayla open source bir ‘container’ teknolojisidir. Dock
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6f24bec1-b99a-4097-b8eb-f91c4b2e40cc" />
 
 
+### Container Teknolojisi nedir?
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5b0d10d9-3e7f-4196-9d8c-ba8b71d18795" />
+
+
+### Container Türleri
+- LXC
+- LXD
+- LXCFS
+**Docker LXC container yöntemini kullanmaktadır.**
 
 Bir sanal makinenin sunucu donanımını sanallaştırmasına (doğrudan yönetme gereksinimini ortadan kaldırma) benzer şekilde container'lar da bir sunucunun işletim sistemini sanallaştırır. Docker her sunucuya yüklenir ve container'ları oluşturmak, başlatmak veya durdurmak için kullanabileceğiniz basit komutlar sağlar.
 
