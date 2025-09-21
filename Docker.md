@@ -78,7 +78,7 @@ Sol taraftaki uygulamalar (Docker Hub üzerinden çekiyoruz bunları) bir image 
 
 ## Command Line Editor (CLI)
 
-### Terminale yazdığımız bu komut ile Ubuntu image'ini yükleriz
+### Terminale yazdığımız bu komut ile Ubuntu image'ini Docker Hub'tan çekeriz.(yükleriz)
 
 ```bash
 docker pull ubuntu
@@ -114,7 +114,7 @@ docker run ubuntu sleep 5
 
 ### Bir görev vererek ubuntu'nun içine girme örneği(root). 
 
-- it (i = interactive, t = tty) -> i - STDIN’i açık tutar, yani container’a komut girebilirsin., t - Bir terminal (pseudo-TTY) sağlar.
+- it (i = interactive, t = tty) -> i - STDIN’i açık tutar, yani container’a komut girebilirsin., t - Bir terminal (pseudo-TTY) sağlar. (interactive terminal)
 - Sonuç, Ubuntu image’inden açılan container’ın içine interaktif bir bash shell ile düşersin. **root@<container_id>:/#** Böyle bir terminal başlangıcı görünür.
  
 ```bash
@@ -127,7 +127,94 @@ docker run -it ubuntu
 exit
 ```
 
+### Şu an ayakta olan containerları görmek için: (Container ID, Command, Time, Container Names gibi özellikleri gösterir) (ps - process) (İki komut da aynı sonucu verir)
 
+```bash
+docker ps
+docker containner ls
+```
+
+### Daha önce de açılan containerları görüntülemek için kullanılan komutlar: (Aşağıdaki komutların hepsi aynı sonucu verir)
+
+```bash
+docker ps -all
+docker ps -a
+docker container ls -a
+```
+
+### Containerı çalıştırırken containera isim verme komutu: (Burada bash_ubuntu ismini verdik) (Yoksa kafasına göre veriyor isim)
+
+```bash
+docker run -it --name bash_ubuntu ubuntu
+```
+
+### Docker başlatma verdiğimiz isim ile(arka planda başlar)
+
+```bash
+docker start bash_ubuntu
+```
+
+### Docker durdurma 
+
+```bash
+docker stop bash_ubuntu
+```
+
+### Diyelim ki id'nin ilk birkaç karakterini hatırlıyoruz. Eğer aynı id ile başlayan başka bir container yoksa "docker stop b4" gibi bir komutla b4 ile başlayan id'li container'ı durdurabiliriz.
+
+### Bir containerı silmek için(name dışında id ile de silebiliriz) (id'nin ilk birkaç karakteri olsa da siler)
+
+```bash
+docker rm bash_ubuntu
+```
+
+### Birden çok container silme örneği(id'ler ile)
+
+```bash
+docker rm b4 km 2b 55
+```
+
+
+### Bütün containerları silme
+
+```bash
+docker container rm $(docker container ls -aq)
+```
+
+
+### TAG - Aşağıdaki komut ile redis'in 5 sürümünü çalıştırmış oluruz. Burada da :'dan sonrası TAG'dir.
+
+```bash
+docker run redis:5
+```
+
+### Terminalde çalışması bizim terminalde işlem yapmamızı engelliyor. Bu komut ile bize id döndürüyor ve terminalde değil arka planda çalışıyor. Mesela Redis'in arka planda çalışması için komut: (detach mode)
+
+```bash
+docker run -d redis
+```
+
+### Çalışan container'ın loglarını anlık olarak terminalde görmek için: (Sondaki id)
+
+```bash
+docker attach 56cc
+```
+
+### Bizim görmediğimiz logları gösteren komut:
+
+```bash
+docker container logs 56cc
+```
+
+
+### PORT MAPPING
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f0871dee-ba65-4654-9f99-75050f0ad301" />
+
+
+
+
+**!!! NOT**: Docker Hub'a kendi containerlarımızı da yükleyebiliriz.
 
 # KAYNAKÇA
 - https://medium.com/batech/docker-nedir-docker-kavramlar%C4%B1-avantajlar%C4%B1-901b37742ee0
