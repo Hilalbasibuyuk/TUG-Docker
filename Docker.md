@@ -377,8 +377,28 @@ docker-compose build
 docker-compose up
 ```
 
+Kapatmak için:
+
+```bash
+docker-compose down
+```
 
 
+## Ek Bilgiler
+### Docker Deamon
+- Docker Daemon’un resmi adı dockerd’ir.
+- Görevi: Container’ların oluşturulması, çalıştırılması, yönetilmesi ve imajların indirilip saklanmasını sağlamak.
+- Biz docker run, docker build, docker ps gibi komutlar yazdığımızda, aslında Docker CLI (Client) bu komutları Docker Daemon’a gönderir.Deamon Bu komutları işler ve gerekli işlemleri yapar.
+
+
+### Docker Engine
+Docker Engine, konteynerleri barındıran yazılım olarak adlandırılır. Docker Engine, istemci-sunucu tabanlı bir uygulamadır ve üç ana bileşenden oluşur:
+
+- Server: Docker imajlarını, konteynerleri, ağları ve diskleri oluşturmak ve yönetmekle sorumludur. Daemon işlemi olarak anılır.
+
+- REST API: Uygulamaların Server ile nasıl etkileşimde bulunacağını ve ona ne yapmasını gerektiğini belirler.
+
+- Client: Docker komutlarını kullanarak Docker ile etkileşime geçmemize olanak tanıyan Docker komut satırı arayüzüdür (CLI).
 
 
 
