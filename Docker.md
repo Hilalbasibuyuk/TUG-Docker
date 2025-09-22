@@ -334,6 +334,7 @@ docker run --net custom-network -p 3000:3000 gkandemir/todo-app
 
 
 
+
 # KAYNAKÇA
 - https://medium.com/batech/docker-nedir-docker-kavramlar%C4%B1-avantajlar%C4%B1-901b37742ee0
 - https://academy.patika.dev/courses/deployment/what-is-docker
