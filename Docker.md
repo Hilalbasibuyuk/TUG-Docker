@@ -267,6 +267,69 @@ Aşağıdaki komutun açıklaması:
 docker run --name pmyadmin -p 8000:80 --link mysql-server:db -d phpmyadmin/phpmyadmin
 ```
 
+---
+
+## Docker Network Türleri
+
+3 tane network türü vardır. Bridge, None ve Host
+
+- Bridge network türü varsayılandır. (docker run mongo)
+- None network türünde containera dışarıdan erişilemez ve container dışarıya erişemez.(docker run mongo --network=none)
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5cd604d0-3295-46cd-8f32-ba19dc77a426" />
+
+
+### Kullanıcı tanımlı network
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/38618e5c-0f1a-4ac7-acf7-0c30eba17418" />
+
+### Bir image'i silmek için
+
+```bash
+docker rmi my-ubuntu
+```
+
+### Networkleri listelemek için(İkisi de aynı)
+
+```bash
+docker network list
+docker network ls
+```
+
+### Network silmek için
+
+```bash
+docker network rm my-network 
+```
+
+### Docker içinde özel bir bridge network oluşturma kodu.
+Açıklamaları:
+- docker network create → Yeni bir ağ (network) oluşturur.
+- --driver bridge → Ağ tipini bridge olarak belirler. (Varsayılan ağ türü, container’lar arasında iletişim için kullanılır.)
+- --subnet 182.18.0.1/24 → Ağın IP aralığını tanımlar. Burada /24 demek: 182.18.0.0 ile 182.18.0.255 arasındaki adresleri kapsar (toplam 256 adres)
+- --gateway 182.18.0.1 → Container’ların bu ağa bağlanırken kullanacağı varsayılan ağ geçidi.
+- custom-network → Bu yeni network’e verilen isim.
+- 
+**Kodda kullanacağımız için name vermek önemli**
+
+  
+```bash
+docker network create --driver bridge --subnet 182.18.0.1/24 --gateway 182.18.0.1 custom-network
+ ```
+
+### Oluşturduğumuz ağ üzerinden çalışmasını sağlama komutu. Db container'ı.
+
+```bash
+docker run --name mongo-server --net custom-network -d mongo
+```
+
+### Uygulamayı dış dünyaya açıyoruz, yani host makineden http://localhost:3000 ile erişebiliyoruz.(-p 3000:3000 ile)
+
+```bash
+docker run --net custom-network -p 3000:3000 gkandemir/todo-app
+```
+
+- Bu sayede db ve uygulamayı birbirine link kullanmadan bağlamış olduk.
 
 
 
