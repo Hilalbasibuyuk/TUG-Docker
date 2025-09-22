@@ -188,7 +188,7 @@ docker container rm $(docker container ls -aq)
 docker run redis:5
 ```
 
-### Terminalde çalışması bizim terminalde işlem yapmamızı engelliyor. Bu komut ile bize id döndürüyor ve terminalde değil arka planda çalışıyor. Mesela Redis'in arka planda çalışması için komut: (detach mode)
+### Terminalde çalışması bizim terminalde işlem yapmamızı engelliyor. Bu komut ile bize id döndürüyor ve terminalde değil arka planda çalışıyor. Mesela Redis'in arka planda çalışması için komut: (detached mode)
 
 ```bash
 docker run -d redis
@@ -214,7 +214,62 @@ docker container logs 56cc
 
 
 
+
 **!!! NOT**: Docker Hub'a kendi containerlarımızı da yükleyebiliriz.
+
+
+
+### Volume Mapping
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6a5e2703-4a4a-47e6-8651-58c32dcfd04f" />
+
+Kalıcı olarak verileri kaydetmeyi sağlar.(-v  -> volume)
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/51ae70de-66fc-47ee-a0cc-855741674595" />
+
+Docker Desktop üzerinde Docker tarafından belirli olan yollara kayıt edebiliriz. Kafamıza göre vermek istiyorsak Docker'a eklemeliyiz. (Resouces/File Sharing kısmında görebiliriz)
+
+
+Örnek dosya yolu mongo için:
+
+```bash
+docker run -v /opt/data:/data/db -p 27017:27017 mongo
+```
+
+
+!! NOT : Docker Hub'ı containerların dökümantasyonunu okumak için kullanabiliriz. Orada bulabiliriz, o containerı nasıl başlatabiliriz gibi birçok bilgiyi.
+
+### Container hakkında detaylı bir bilgi almak için çalıştırmamız gereken komut(Sona container id veya container name gelir)
+
+```bash
+docker inspect 56cc
+```
+
+- docker run phpmyadmin/phpmyadmin  -> Bu komutta konteynır verified olmadığı için ilk phpmyadmin kullanıcı adı gibi oluyor. Bu şekilde indiriyoruz.
+- docker run -e MYSQL_ROOT_PASSWORD=test123 -d mysql  -> (-e -> env variable) (Bu şekilde çalışacağını Docker Hub dökümantasyonundan öğrendik.)
+
+### İki containerı birbirine bağlama
+
+Bunu iki farklı örnek ile açıklayalım. Bir MySQL ayağa kaldırdığımız bir container'ımız var. Aynı şekilde MySQL'e erişebilecek bir arayüz olan phpMyAdmin olsun. Bu iki container arasında bağlantı kurmamız gerekiyor ki phpMyAdmin MySQL'e bağlanabilsin. Bunu "--link" ile yaparız. 
+
+Burada bağlanılacak containerı ayağa kaldırıyoruz.
+```bash
+docker run --name mysql-server -p 3306:3306 -e MYSQL_ROOT_PASSWORD=test123 -d mysql
+```
+
+Aşağıdaki komutun açıklaması: 
+- (--name pmyadmin → Container’a pmyadmin adını verir)
+- (--link mysql-server:db → Bu phpMyAdmin container’ını mysql-server adlı başka bir container’a bağlar. İçeride bu bağlantı db host adıyla tanımlanır.)
+- (phpmyadmin/phpmyadmin → Çalıştırılacak imajın adı)
+
+
+```bash
+docker run --name pmyadmin -p 8000:80 --link mysql-server:db -d phpmyadmin/phpmyadmin
+```
+
+
+
+
 
 # KAYNAKÇA
 - https://medium.com/batech/docker-nedir-docker-kavramlar%C4%B1-avantajlar%C4%B1-901b37742ee0
