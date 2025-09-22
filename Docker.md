@@ -358,7 +358,7 @@ docker container prune
 ## Docker Compose
 
 ### .yaml dosyası ile işlem yaparız. 
-Docker Compose YAML dosyası, birden fazla container’dan oluşan uygulamaları tek bir dosya ile tanımlayıp çalıştırmana yarar. Dosya adı genelde docker-compose.yml veya docker-compose.yaml olur. Her şey YAML formatında yazılır.
+Docker Compose YAML dosyası, birden fazla container’dan oluşan uygulamaları tek bir dosya ile tanımlayıp çalıştırmana yarar. Dosya adı genelde docker-compose.yml veya docker-compose.yaml olur. Her şey YAML formatında yazılır. Örnek bir yaml dosyasını app-node altında bulabilirsiniz.
 
 - İçinde services, networks, volumes gibi bölümler bulunur.
 - services → Çalıştırılacak container’ları tanımlar (örn. web, db).
