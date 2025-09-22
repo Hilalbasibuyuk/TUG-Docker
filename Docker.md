@@ -332,6 +332,53 @@ docker run --net custom-network -p 3000:3000 gkandemir/todo-app
 - Bu sayede db ve uygulamayı birbirine link kullanmadan bağlamış olduk.
 
 
+### GitHub'ımdaki klasördek app-node kısmını kendi klasörümüze kopyalayıp o klasöre geçelim. Aşağıdaki kod bulunduğumuz klasördeki docker'ı build etmekte
+
+```bash
+docker build .
+```
+
+### Docker'ı build ederken isim vermek istiyorsak: (docker images komutu ile de ismini görebiliriz)
+
+```bash
+docker build . -t simple-node-app
+```
+
+**NOT** Dockerfile'daki her bir satır layer 1, layer 2... katmanları olarak devam eder. Dockerfile dosyasını kendimiz de oluşturabiliriz ama Docker Hub'da kendiliğinden Dockerfile dosyası  var.
+
+- **.dockerignore dosyası**, Docker imajı build edilirken hangi dosya ve klasörlerin Docker context’e kopyalanmamasını istediğini belirtir.
+
+### Prune -> Çalışmayan (stopped) tüm container’ları topluca silmek için kullanılır.
+
+```bash
+docker container prune
+```
+
+
+## Docker Compose
+
+### .yaml dosyası ile işlem yaparız. 
+Docker Compose YAML dosyası, birden fazla container’dan oluşan uygulamaları tek bir dosya ile tanımlayıp çalıştırmana yarar. Dosya adı genelde docker-compose.yml veya docker-compose.yaml olur. Her şey YAML formatında yazılır.
+
+- İçinde services, networks, volumes gibi bölümler bulunur.
+- services → Çalıştırılacak container’ları tanımlar (örn. web, db).
+- networks → Container’ların haberleşeceği ağları tanımlar.
+- volumes → Kalıcı veri saklama (örn. MySQL veritabanı) tanımlar.
+
+
+Build eder(yükler)
+```bash
+docker-compose build
+```
+
+Çalıştırır. Build edilmemişse de build ederek çalıştırır
+
+```bash
+docker-compose up
+```
+
+
+
 
 
 
