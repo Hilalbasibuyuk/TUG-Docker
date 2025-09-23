@@ -1,1 +1,1 @@
-## Bu repoda ORM, CQRS, Meditr Mimarisi, Times ve Docker hakkında bilgi veren makaleler yazılmıştır.
+## Bu repoda ORM, CQRS, Meditr Mimarisi, Zaman Temsilleri ve Docker hakkında bilgi veren makaleler yazılmıştır.
