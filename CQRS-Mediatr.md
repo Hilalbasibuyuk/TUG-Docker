@@ -4,6 +4,14 @@
 CQRS(Command Query Responsibility Segregation), write (yazma) ve read (okuma) sorumluluklarının ayrıştırılmasına dayanan bir mimari tasarım modelidir. 
 
 <img width="788" height="522" alt="image" src="https://github.com/user-attachments/assets/d1aa7828-3c28-4f7e-a28f-3b0d5f8edcd5" />
+
+
+
+
+
+
+
+
 Resim kaynakçası ->  https://sefikcankanber.medium.com/cqrs-command-query-responsibility-segregation-nedir-16b196376389
 
 
