@@ -48,7 +48,7 @@ UTC+3 (Türkiye Yaz Saati): 20 Eylül 2024, 15:33:20
 
 ## 2. Windows Time Servisi(w32time)
 - **Tanım**: Windows Time Servisi, ağ üzerindeki zaman senkronizasyonunu sağlayan sistem servisidir.
-- **Görevi**: Bilgisayarın sistem saatini otomatik olarak doğru tutmak.
+- **Görevi**: Bilgisayarın sistem saatini otomatik olarak doğru tutmak. Bunu, ağdaki diğer cihazlarla ya da internet üzerindeki zaman sunucularıyla (NTP – Network Time Protocol) senkronize ederek yapar.
 - **Servis Adı**: w32time. Çalıştığı process: **svchost.exe**. Servis olarak başlatılır: **net start w32time**.
 - **Epoch (başlangıç noktası)**: `01 Ocak 1601 00:00:00 UTC`
 - **Birim**: 100-nanosecond (tick) = 10⁻⁷ saniye.
