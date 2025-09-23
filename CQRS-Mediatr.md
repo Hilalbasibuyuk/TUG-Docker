@@ -5,6 +5,11 @@ CQRS(Command Query Responsibility Segregation), write (yazma) ve read (okuma) so
 
 <img width="788" height="522" alt="image" src="https://github.com/user-attachments/assets/d1aa7828-3c28-4f7e-a28f-3b0d5f8edcd5" />
 Resim kaynakçası ->  https://sefikcankanber.medium.com/cqrs-command-query-responsibility-segregation-nedir-16b196376389
+
+
+
+
+
 - Geleneksel bir mimaride, hem okuma hem de yazma işlemleri için genellikle tek bir veri modeli kullanılır. Bu yaklaşım basittir ve temel oluşturma, okuma, güncelleme ve silme (CRUD) işlemleri için uygundur. Uygulamalar büyüdükçe, tek bir veri modeli üzerinde okuma ve yazma işlemlerini optimize etmek giderek zorlaşabilir. Okuma ve yazma işlemleri genellikle farklı performans ve ölçekleme gereksinimlerine sahiptir. Geleneksel bir CRUD mimarisi bu asimetriyi hesaba katmaz ve bu da veri uyumsuzluğu, kilit çekişmesi, performans ve güvenlik ile ilgili sorunlara yol açmaktadır.
 - Çözüm ise: CQRS. Yazma işlemlerini veya komutları okuma işlemlerinden veya sorgulardan ayırmak için CQRS modelini kullanılır . Komutlar verileri günceller. Sorgular verileri alır. CQRS modeli, komutlar ve okumalar arasında net bir ayrım gerektiren senaryolarda kullanışlıdır.
 - CQRS mimarisi, CQS ilkesi baz alınarak kurulmuştur. CQS’in ana fikrinden bahsetmek gerekirse; bir metot objenin durumunu değiştirmelidir ya da geriye bir sonuç dönmelidir, ancak 2 işlemi birden yapmamalıdır. Metotlar yalnızca yan etki yaratmıyorsa bir değer döndürmelidir. Basitçe söylemek gerekirse: bir sorgu asla state değerini değiştirmemeli , bir komut ise state değerini değiştirebilir ancak asla bir dönüş değerine sahip olmamalıdır . Uygulamalarınızda CQRS mimari modeline göre oluşturursanız; uygulamanızın performansını, ölçeklenebilirliğini ve güvenliğini en üst düzeye çıkarabilirsiniz.
