@@ -53,6 +53,7 @@ UTC+3 (Türkiye Yaz Saati): 20 Eylül 2024, 15:33:20
 - **Epoch (başlangıç noktası)**: `01 Ocak 1601 00:00:00 UTC`
 - **Birim**: 100-nanosecond (tick) = 10⁻⁷ saniye.
 - **Özellik**: 1601 yılından 30828 yılına kadar tarih aralığını destekler.
+- Ağ güvenliği, log analizi ve sistem uyumu için kritik öneme sahiptir.
 
 
 ### Çalışma Mimarisi
@@ -66,20 +67,20 @@ UTC+3 (Türkiye Yaz Saati): 20 Eylül 2024, 15:33:20
 
 ### Temel komutlar
 
-Servisi yeniden başlat
+### Servisi yeniden başlat
 
 ```bash
 net stop w32time
 net start w32time
 ```
 
-Hemen zaman senkronizasyonu yap
+### Hemen zaman senkronizasyonu yap
 
 ```bash
 w32tm /resync
 ```
 
-Zaman kaynağını görmek için
+### Zaman kaynağını görmek için
 
 ```bash
 w32tm /query /status
