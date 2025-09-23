@@ -21,12 +21,12 @@ Resim kaynakçası -> https://medium.com/kodluyoruz/orm-nedir-orm-ara%C3%A7lar%C
 ---
 
 **Dillere göre ORM Araçları**
-**C#(.NET)** : Entity Framework(EF), Dapper, NHibernate
-**Java** : Hibernate, JPA, MyBatis, JOOQ (Java Object-Oriented Querying)
-**Phyton** : Django ORM, Storm, Web2py, SQL Alchemy
-**PHP** : PdoMap, CakePHP, Eloquent ORM (Laravel), RedBeanPHP, Doctrine ORM
-**Nodejs** : Sequelize, Mongoose
-**Ruby**: Active Record
+- **C#(.NET)** : Entity Framework(EF), Dapper, NHibernate
+- **Java** : Hibernate, JPA, MyBatis, JOOQ (Java Object-Oriented Querying)
+- **Phyton** : Django ORM, Storm, Web2py, SQL Alchemy
+- **PHP** : PdoMap, CakePHP, Eloquent ORM (Laravel), RedBeanPHP, Doctrine ORM
+- **Nodejs** : Sequelize, Mongoose
+- **Ruby**: Active Record
 
 
 **En çok kullanılan ORM araçları**
