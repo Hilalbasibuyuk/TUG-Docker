@@ -7,7 +7,7 @@ ORM(Object to Relational Mapping), Nesne ile İlişkisel Eşleme olarak açabili
 **NOT!!** Önceden geliştirilen projelerde veri tabanına bağlanmak istenildiğinde eskiden genellikle ADO.NET denilen, veri tabanı işlemlerini SQL sorgusu ile yaptığımız ve veri tabanına uygulama içerisinden bağlanılan bir yöntem kullanılırdı. Nesne tabanlı programlama dillerinin gelişmesi ve yaygınlaşması ile  ADO.NET' in karmaşıklığını basite indiren ve daha okunaklı kod yazılabilmesi için  ORM (Object Relational Mapping) ortaya çıktı.
 
 ### ORM’nin Temel Prensipleri
-**Nesne ve Tablo İlişkisi: ** ORM, veritabanı tablolarını, yazılımın nesne modeline dönüştürür. Örneğin, bir kullanıcı tablosu (user) veritabanında bir User sınıfına karşılık gelir. Her tablodaki satır, bir nesnenin örneği olur ve her sütun, nesnenin özellikleri (properties) ile eşleşir.
+**Nesne ve Tablo İlişkisi:** ORM, veritabanı tablolarını, yazılımın nesne modeline dönüştürür. Örneğin, bir kullanıcı tablosu (user) veritabanında bir User sınıfına karşılık gelir. Her tablodaki satır, bir nesnenin örneği olur ve her sütun, nesnenin özellikleri (properties) ile eşleşir.
 
 **SQL’den Soyutlama:** ORM, geliştiricinin SQL komutlarını doğrudan yazmasına gerek bırakmadan veritabanı işlemleri yapmasını sağlar. Veritabanına erişim için SQL sorgularını manuel yazmak yerine, ORM araçları otomatik olarak sorguları oluşturur.
 
