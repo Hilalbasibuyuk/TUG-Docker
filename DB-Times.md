@@ -64,6 +64,27 @@ UTC+3 (Türkiye Yaz Saati): 20 Eylül 2024, 15:33:20
 - Manuel senkronizasyon: w32tm /resync, w32tm /resync /rediscover
 - Zaman kaynağını değiştirme: w32tm /config /syncfromflags:manual /manualpeerlist:"time.windows.com", w32tm /config /update
 
+### Temel komutlar
+
+Servisi yeniden başlat
+
+```bash
+net stop w32time
+net start w32time
+```
+
+Hemen zaman senkronizasyonu yap
+
+```bash
+w32tm /resync
+```
+
+Zaman kaynağını görmek için
+
+```bash
+w32tm /query /status
+w32tm /query /source
+```
 
 
 👉 Örnek:  
