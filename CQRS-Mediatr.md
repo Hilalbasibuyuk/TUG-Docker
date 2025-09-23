@@ -84,26 +84,199 @@ public class GetCustomerByIdQuery() : IQuery
 
 <img width="831" height="498" alt="image" src="https://github.com/user-attachments/assets/3e3b6e1d-ba62-4f15-8030-8928719d6cf6" />
 
-- .Net Core Web Api projesi oluşturup MediatR kütüphanesini ve bağımlılıklarını yükleme:
+- .Net Core projesi oluşturup MediatR kütüphanesini ve bağımlılıklarını yükleme:
 
 ```csharp
-dotnet add package MediatR --version 9.0.0
-dotnet add package MediatR.Extensions.Microsoft.DependencyInjection --version 9.0.0
-```
-- Startup sınıfında ConfigureServices metodunda MediatR’ı ekleme:
-
-```csharp
-services.AddMediatR(typeof(Startup));
+dotnet add package MediatR
+dotnet add package MediatR.Extensions.Microsoft.DependencyInjection
 ```
 
+### Model
+
+```charp
+public class Customer
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public string Email { get; set; } = "";
+}
+```
+
+### Repository
+
+```charp
+public interface ICustomerRepository
+{
+    Task<Customer?> GetByIdAsync(int id);
+    Task<IEnumerable<Customer>> GetAllAsync();
+    Task AddAsync(Customer customer);
+    Task DeleteAsync(int id);
+}
+```
 
 
+### Queries
+
+Tek müşteri getir
+
+```charp
+using MediatR;
+
+public record GetCustomerByIdQuery(int Id) : IRequest<Customer?>;
+```
+
+Tüm müşterileri getir
+
+```charp
+using MediatR;
+
+public record GetAllCustomersQuery() : IRequest<IEnumerable<Customer>>;
+```
+
+### Commands
+
+Yeni müşteri oluştur
+
+```charp
+using MediatR;
+
+public record CreateCustomerCommand(string Name, string Email) : IRequest<int>;
+```
+
+
+Müşteri sil
+
+```charp
+using MediatR;
+
+public record DeleteCustomerCommand(int Id) : IRequest;
+```
+
+
+### Handlers
+
+Query Handler
+
+```charp
+public class GetCustomerByIdQueryHandler 
+    : IRequestHandler<GetCustomerByIdQuery, Customer?>
+{
+    private readonly ICustomerRepository _repository;
+
+    public GetCustomerByIdQueryHandler(ICustomerRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public async Task<Customer?> Handle(GetCustomerByIdQuery request, CancellationToken cancellationToken)
+    {
+        return await _repository.GetByIdAsync(request.Id);
+    }
+}
+```
+
+
+
+Command Handler
+
+```charp
+public class CreateCustomerCommandHandler 
+    : IRequestHandler<CreateCustomerCommand, int>
+{
+    private readonly ICustomerRepository _repository;
+
+    public CreateCustomerCommandHandler(ICustomerRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public async Task<int> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+    {
+        var customer = new Customer
+        {
+            Name = request.Name,
+            Email = request.Email
+        };
+
+        await _repository.AddAsync(customer);
+
+        return customer.Id; // kaydedilen müşteri Id’si döner
+    }
+}
+```
+
+### Program.cs içinde MeditR kaydı
+
+```charp
+builder.Services.AddMediatR(cfg => 
+    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+```
+
+### Örnek bir mediator kullanımı
+
+```charp
+[ApiController]
+[Route("api/[controller]")]
+public class CustomersController : ControllerBase
+{
+    private readonly IMediator _mediator;
+
+    public CustomersController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var result = await _mediator.Send(new GetCustomerByIdQuery(id));
+        return result is null ? NotFound() : Ok(result);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var result = await _mediator.Send(new GetAllCustomersQuery());
+        return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateCustomerCommand command)
+    {
+        var newId = await _mediator.Send(command);
+        return CreatedAtAction(nameof(GetById), new { id = newId }, null);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        await _mediator.Send(new DeleteCustomerCommand(id));
+        return NoContent();
+    }
+}
+```
+---
+
+### Bu yapının sonucunda:
+
+- Controller → sadece API giriş noktası olur.
+
+- Command & Query → veriyi işlemek için ayrı nesneler kullanılır.
+
+- Handler → iş mantığını içerir.
+
+- MediatR → istekleri ilgili handler’a yönlendirir.
+
+**Sonuçta**: Daha okunabilir, bakımı kolay, test edilebilir ve genişlemeye açık bir mimari elde edilir.
 
 ### Sonuç
 Event üzerinden işlemlerin yürütüldüğü sistemlerde transactional bağımlılık olmadığı için okuma ve yazma eylemleri birbirlerini beklemezler. Bu sebeple de CQRS altyapısı performansın önemli olduğu yerlerde kullanılmaktadır.
 CQRS ile yazılım geliştirme maliyetli bir yöntemdir. Doğru yerde kullanılması halinde, geliştirilen sistemin bakımının yapılması ve sürdürülebilir şekilde olması daha kolay olacaktır. Bu sebeple, her yazılım geliştirme deseninde olduğu gibi gerektiği yerde kullanılması gerekmektedir.
 
 
+
+
+Sonuç olarak CQRS ve MediatR birlikte kullanıldığında, sorumlulukların ayrımı (Separation of Concerns) sağlanarak kod daha modüler ve test edilebilir hale gelir. Bu yaklaşım, genişlemeye uygun bir altyapı oluştururken aynı zamanda validasyon, logging, caching gibi ortak davranışların pipeline behavior’lar aracılığıyla merkezi bir şekilde yönetilmesine imkân tanır. Böylece özellikle orta ve büyük ölçekli projelerde sürdürülebilir, temiz ve profesyonel bir mimari elde etmek mümkün olur.
 
 
 # KAYNAKÇA
