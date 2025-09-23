@@ -98,7 +98,7 @@ w32tm /query /source
 - **Tanım**: Windows işletim sisteminde dosya oluşturulma, değiştirilme ve erişim zamanlarını temsil eden format.
 - **Teknik olarak**: Windows File Time = Windows Time formatıdır. Yani `1601-01-01 UTC` bazlıdır.
 - **Neden bu tarih?** Bu garip görünen tarihin nedeni tarihseldir. Windows NT'nin tasarlandığı dönemde, 400 yıllık Gregoryen takvim döngüsünü temsil edebilecek bir başlangıç noktası aranıyordu. 1601 yılı, 400 yıllık döngünün başlangıcıdır. Bu, takvim hesaplamalarını büyük ölçüde basitleştirir.
-- **Kullanım Alanı**: NTFS dosya sistemi metadata’sı.Event Log kayıtlarının zaman damgaları. Registry (kayıt defteri) değişiklik zamanları. Process oluşturma zamanları. Thread execution timing bilgileri.
+- **Kullanım Alanı**: NTFS dosya sistemi metadata’sı. Event Log kayıtlarının zaman damgaları. Registry (kayıt defteri) değişiklik zamanları. Process oluşturma zamanları. Thread execution timing bilgileri.
 - **Veri Tipi**: İşaretsiz 64-bit integer (uint64). Bu, değerin hiçbir zaman negatif olamayacağı anlamına gelir.
 - **Zaman Birimi**: 100-ns tick cinsinden tutulur(100 nanosaniye). 1 saniye = 10.000.000 (10 milyon) File Time birimi, 1 milisaniye = 10.000 File Time birimi, 1 mikrosaniye = 10 File Time birimi.
 - **Max Değer**: 0xFFFFFFFFFFFFFFFF (18,446,744,073,709,551,615). Bu değer yaklaşık 28.554 yılına kadar gider. Pratikte bir sınırlama oluşturmaz
